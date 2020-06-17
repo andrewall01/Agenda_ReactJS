@@ -1,26 +1,61 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Contacto from "./components/contacto";
+import Video from "./components/video";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  ruta ="http://localhost:3600";
+  constructor(){
+    super();
+    this.state ={
+      lista :[],
+      videos:[]
+    };
+  }
+
+  componentWillMount(){
+    fetch(this.ruta+"/contactos")
+    .then(response=>response.json())
+    .then(data=>{
+      console.log(data);
+      this.setState({
+        lista:data
+      });
+    });
+
+    fetch(this.ruta+"/videos")
+    .then(response=>response.json())
+    .then(data=>{
+      console.log(data);
+      this.setState({
+        videos:data
+      });
+    });
+  }
+
+
+  render() {
+    return (
+      <div>
+        {this.state.lista.map(item=>{
+          return(<div key={item.id}><Contacto
+            nombre={item.nombre}
+            telef={item.telefono}
+            direc={item.direccion}
+          />
+          </div>);
+        })}    
+
+        {this.state.videos.map(item=>{
+          return(<div key={item.id}><Video
+            nombre={item.nombre}
+            codigo={item.codigo}
+          />
+          </div>);
+        })}   
+      </div>
+    );
+  }
 }
 
 export default App;
