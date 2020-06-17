@@ -5,7 +5,9 @@ import './index.css';
 import $ from 'jquery';
 import Popper from 'popper.js';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import 'font-awesome/css/font-awesome.min.css';
+//import 'font-awesome/css/font-awesome.min.css';
+//import {FontAwesomeIcon} from './node_modules/@fortawesome/react-fontawesome';
+//import {faBell} from './node_modules/@fortawesome/free-solid-svg-icons';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 

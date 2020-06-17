@@ -8,6 +8,7 @@ class App extends Component {
   constructor(){
     super();
     this.state ={
+      titulo: "Lista de Contactos",
       lista :[],
       videos:[]
     };
@@ -36,7 +37,10 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+
+      <div className="container">
+        <h2>{this.state.titulo}</h2>
+        <div className="content">
         {this.state.lista.map(item=>{
           return(<div key={item.id}><Contacto
             nombre={item.nombre}
@@ -44,7 +48,7 @@ class App extends Component {
             direc={item.direccion}
           />
           </div>);
-        })}    
+        })} </div>   
 
         {this.state.videos.map(item=>{
           return(<div key={item.id}><Video
